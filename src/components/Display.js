@@ -1,11 +1,16 @@
 import ContentCard from "./ContentCard";
+import styled from 'styled-components'
 
 function Display() {
     return(
-        <div>
-         <ContentCard/>
-        </div>
+        <BrowseWriting>
+            <ContentCard/>
+        </BrowseWriting>
     )
 }
 
 export default Display;
+
+const BrowseWriting = styled.div`
+
+`

@@ -4,6 +4,7 @@ import TopHead from "./TopHead";
 function Create() {
     return (
         <>
+        <TopHead />
         </>
     )
 }
