@@ -14,15 +14,21 @@ function TopHead({setUser, setUserDelete}) {
              <div className="logo">
                 <Link to="/">WriteFreely</Link>
             </div>
+            <button>Donate</button>
             <div className="profile" onClick={()=> setDropdown(!dropdown)}>
                 My Profile
             </div>
         </Top>
         {dropdown ? (
             <DropDown>
-                <div onClick={() => setUser(null)}>Logout</div>
+                <div onClick={() => {
+                    setUser(null)
+                    }}>Logout</div>
                 <br/>
-                <div onClick={() => setUserDelete(true)}>Remove Account</div>
+                <div onClick={() =>{
+                setUserDelete(true)
+                setDropdown(!dropdown)
+                }}>Remove Account</div>
             </DropDown>
             ) : null}
         </>
@@ -39,6 +45,12 @@ display: flex;
 color: white;
 font-size: 20px;
 
+button{
+    margin-top: 13px;
+    margin-left: 10px;
+    height: 20px;
+}
+
 a{
     text-decoration: none;
 }
@@ -53,11 +65,15 @@ a:visited{
 }
 .profile{
     width: 200px;
-    margin-left: 85%;
+    margin-left: 80%;
     padding-top: 10px;
+}
+.profile:hover{
+    cursor: pointer;
 }
 `
 const DropDown = styled.div`
+cursor: pointer;
 margin-left: 90%;
 background: hsl(0, 0%, 90%);
 text-align: center;

@@ -6,6 +6,8 @@ import Create from "./Create";
 import Login from './Login';
 import DeletePopup from './DeletePopup';
 import "../App.css"
+import TopHead from './TopHead';
+import MyCreations from './MyCreations';
 
 function App() {
   const [allCreations, setAllCreations] = useState([])
@@ -65,25 +67,27 @@ function App() {
   }
   return (
     <div className="App">
-      {userDelete ? <DeletePopup user={user}/> : null}
+      <TopHead user={user} setUser={setUser} setUserDelete={setUserDelete}/>
+      {userDelete ? <DeletePopup user={user} setUser={setUser} setUserDelete={setUserDelete}/> : null}
       <Routes>
         <Route exact path="/" element={
-        <Home creations={allCreations} user={user} path="" setViewItem={setViewItem} setUser={setUser} setUserDelete={setUserDelete}/>
+        <Home creations={allCreations} user={user} path=""  setViewItem={setViewItem} setUser={setUser} setUserDelete={setUserDelete}/>
         }/>
         <Route path="/fiction" element={
-          <Home creations={allFiction} user={user} path="fiction" setViewItem={setViewItem} setUser={setUser} setUserDelete={setUserDelete}/>
+          <Home creations={allFiction} user={user} path="fiction"  setViewItem={setViewItem} setUser={setUser} setUserDelete={setUserDelete}/>
         }/>
         <Route path="/poetry" element={
-          <Home creations={allPoetry} user={user} path="poetry" setViewItem={setViewItem} setUser={setUser} setUserDelete={setUserDelete}/>
+          <Home creations={allPoetry} user={user} path="poetry"  setViewItem={setViewItem} setUser={setUser} setUserDelete={setUserDelete}/>
         }/>
         <Route path="/nonfiction" element={
-          <Home creations={allNonFiction} user={user} path="nonfiction" setViewItem={setViewItem} setUser={setUser} setUserDelete={setUserDelete}/>
+          <Home creations={allNonFiction} user={user} path="nonfiction"  setViewItem={setViewItem} setUser={setUser} setUserDelete={setUserDelete}/>
         }/>
         <Route path="/journalism" element={
           <Home creations={allJournalism} user={user} path="journalism" setViewItem={setViewItem} setUser={setUser} setUserDelete={setUserDelete}/>
         }/>
-        <Route exact path="/:id" element={<PiecePage viewItem={viewItem}/>}/> 
-        <Route exact path="/create" element={<Create />}/>
+        <Route exact path="/:id" element={<PiecePage user={user} viewItem={viewItem}/>}/> 
+        <Route exact path="/create" element={<Create user={user}/>}/>
+        <Route path="/my_creations" element={<MyCreations user={user} setViewItem={setViewItem}/>}/>
       </Routes>
     </div>
   );

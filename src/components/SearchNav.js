@@ -10,7 +10,7 @@ function SearchNav(){
             <NavLink exact to="/journalism">Journalism</NavLink>
             <br/>
             <br/>
-            <input type="text" placeholder="Search by title or writer."/>
+            <input type="text" placeholder="Search by title."/>
             <button>Search</button>
             <br/>
             <input type="text" placeholder="Filter by tag."/>

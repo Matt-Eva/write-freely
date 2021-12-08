@@ -1,13 +1,22 @@
 import { Link } from "react-router-dom"
 
 import styled from "styled-components"
-function ContentCard({creation, setViewItem}) {
+function ContentCard({creation, user, setViewItem}) {
 
     return (
         <Card>
             <h2>{creation.title}</h2>
             <h4>By: {creation.user.username}</h4>
             <Link to={`/${creation.id}`} onClick={() =>setViewItem(creation)}>View</Link>
+            <br/>
+            <br/>
+            {creation.user.id === user ? (
+            <>
+            <button>Edit</button>
+            <br/>
+            <br/>
+            <button>Delete</button>
+            </> ): null}
         </Card>
     )
 }

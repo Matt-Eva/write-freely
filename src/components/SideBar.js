@@ -5,7 +5,7 @@ function SideBar() {
     return(
         <SideDiv>
             <button><Link to="/create">Create!</Link></button>
-            <h3>My Creations</h3>
+            <h3><Link to="/my_creations">My Creations</Link></h3>
             <h3>My Library</h3>
             <ul>
                 <li>Fiction</li>
@@ -32,4 +32,5 @@ const SideDiv = styled.div`
     border-width: 1px;
     border-radius: 5px;
     padding: 5px;   
+    text-align: left;
 `

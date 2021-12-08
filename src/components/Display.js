@@ -1,8 +1,8 @@
 import ContentCard from "./ContentCard";
 import styled from 'styled-components'
 
-function Display({creations, setViewItem}) {
-    const display = creations.map(creation => <ContentCard creation={creation} setViewItem={setViewItem} key={creation.id}/>)
+function Display({creations, setViewItem, user}) {
+    const display = creations.map(creation => <ContentCard user ={user} creation={creation} setViewItem={setViewItem} key={creation.id}/>)
     return(
         <BrowseWriting>
             {display}

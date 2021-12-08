@@ -1,0 +1,43 @@
+import Display from "./Display";
+import SideBar from "./SideBar"
+import { useEffect, useState } from "react"
+import styled from "styled-components"
+
+function MyCreations({user, setViewItem}){
+    const [myCreations, setMyCreations] = useState(null)
+    console.log(myCreations)
+    console.log(user)
+
+
+    useEffect(() => {
+        const configObj ={
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({id: user})
+        }
+        fetch(`http://localhost:9292/my_creations`, configObj)
+        .then(r => r.json())
+        .then(data=> setMyCreations(data))
+    }, [])
+
+
+    if (myCreations === null){
+        return<h1>Loading...</h1>
+    }
+
+    return(
+        <MyWriting>
+            <h1>Your Creations</h1>
+            <SideBar />
+            <Display creations={myCreations} user={user} setViewItem={setViewItem}/>
+        </MyWriting>
+    )
+}
+
+export default MyCreations;
+
+const MyWriting = styled.div`
+text-align: center;
+`
