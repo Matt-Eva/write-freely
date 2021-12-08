@@ -1,15 +1,31 @@
 import styled from "styled-components"
+import { Link } from "react-router-dom"
+import {useState} from "react"
 
-function TopHead() {
+function TopHead({setUser, setUserDelete}) {
+    const [dropdown, setDropdown] = useState(false)
+
+
+   
+
     return(
+        <>
         <Top>
              <div className="logo">
-                WriteFreely
+                <Link to="/">WriteFreely</Link>
             </div>
-            <div className="profile">
+            <div className="profile" onClick={()=> setDropdown(!dropdown)}>
                 My Profile
             </div>
         </Top>
+        {dropdown ? (
+            <DropDown>
+                <div onClick={() => setUser(null)}>Logout</div>
+                <br/>
+                <div onClick={() => setUserDelete(true)}>Remove Account</div>
+            </DropDown>
+            ) : null}
+        </>
     )
 }
 
@@ -23,6 +39,14 @@ display: flex;
 color: white;
 font-size: 20px;
 
+a{
+    text-decoration: none;
+}
+
+a:visited{
+    color: white
+}
+
 .logo{
     padding-top: 10px;
     margin-left: 20px;
@@ -32,4 +56,25 @@ font-size: 20px;
     margin-left: 85%;
     padding-top: 10px;
 }
+`
+const DropDown = styled.div`
+margin-left: 90%;
+background: hsl(0, 0%, 90%);
+text-align: center;
+padding: 10px;
+z-index: 1;
+position: fixed;
+
+div{
+    background: hsl(240, 50%, 90%);
+    border: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    padding: 2px;
+}
+
+div:hover{
+    background: hsl(240, 100%, 90%)
+}
+
 `

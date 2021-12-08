@@ -127,7 +127,7 @@ function Login({setUser}) {
 export default Login;
 
 const LogBox = styled.div `
-    margin: 25% 25% 25% 25%;
+    margin: 50px 25% 0px 25%;
     padding: 10px;
     width: 50%;
     height: 50%;
