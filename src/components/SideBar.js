@@ -6,14 +6,8 @@ function SideBar() {
         <SideDiv>
             <button><Link to="/create">Create!</Link></button>
             <h3><Link to="/my_creations">My Creations</Link></h3>
-            <h3>My Library</h3>
-            <ul>
-                <li>Fiction</li>
-                <li>Poetry</li>
-                <li>NonFiction</li>
-                <li>Journalism</li>
-            </ul>
-            <h3>Liked Writing</h3>
+            <h3><Link to="/my_library">My Library</Link></h3>
+            <h3><Link to="/liked">Liked Writing</Link></h3>
 
         </SideDiv>
     )
@@ -33,4 +27,9 @@ const SideDiv = styled.div`
     border-radius: 5px;
     padding: 5px;   
     text-align: left;
+    
+    a{
+        color: black;
+        text-decoration: none;
+    }
 `

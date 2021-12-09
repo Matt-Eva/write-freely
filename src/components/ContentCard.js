@@ -15,7 +15,7 @@ function ContentCard({creation, user, setViewItem}) {
             <button>Edit</button>
             <br/>
             <br/>
-            <button>Delete</button>
+            {/* <button>Delete</button> */}
             </> ): null}
         </Card>
     )

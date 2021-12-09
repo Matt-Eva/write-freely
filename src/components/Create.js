@@ -111,7 +111,7 @@ function Create({user}) {
             <br/>
             <label>Text</label>
             <br/>
-            <input type="text" name="content" className="content" value={pieceForm.content} placeholder="Use \n to indicate line breaks and paragraphs. Character limit fifty thousand."/>
+            <input type="text" name="content" className="content" value={pieceForm.content} placeholder="Use /n to indicate line breaks and paragraphs. Character limit fifty thousand."/>
             <br/>
             {showPieceForm ? <button type="submit">Submit</button> : <button type="submit" disabled>Submit</button>}
         </PieceForm>

@@ -8,6 +8,8 @@ import DeletePopup from './DeletePopup';
 import "../App.css"
 import TopHead from './TopHead';
 import MyCreations from './MyCreations';
+import MyLibrary from './MyLibrary';
+import Liked from './Liked'
 
 function App() {
   const [allCreations, setAllCreations] = useState([])
@@ -18,6 +20,7 @@ function App() {
   const [userDelete, setUserDelete] = useState(false)
   const [user, setUser] = useState(null)
   const [viewItem, setViewItem] = useState(null)
+  
 
   useEffect(()=>{
     fetch("http://localhost:9292/")
@@ -88,6 +91,8 @@ function App() {
         <Route exact path="/:id" element={<PiecePage user={user} viewItem={viewItem}/>}/> 
         <Route exact path="/create" element={<Create user={user}/>}/>
         <Route path="/my_creations" element={<MyCreations user={user} setViewItem={setViewItem}/>}/>
+        <Route path="/my_library" element={<MyLibrary user={user} setViewItem={setViewItem} />}/>
+        <Route path="/liked" element={<Liked user={user} setViewItem={setViewItem}/>}/>
       </Routes>
     </div>
   );

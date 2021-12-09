@@ -1,7 +1,23 @@
 import { NavLink } from "react-router-dom";
+import { useState } from "react"
 import styled from "styled-components"
 
-function SearchNav(){
+function SearchNav({path, setFilterSearch}){
+const [searchForm, setSearchForm] = useState({
+    title: ""
+})
+const [tagForm, setTagForm] = useState({
+    tag: ""
+})
+
+function search(){
+
+}
+
+function filter(){
+    
+}
+
     return(
         <UserSearch>
             <NavLink exact to="/fiction">Fiction</NavLink>
@@ -10,11 +26,15 @@ function SearchNav(){
             <NavLink exact to="/journalism">Journalism</NavLink>
             <br/>
             <br/>
-            <input type="text" placeholder="Search by title."/>
-            <button>Search</button>
+            <form onChange={(e) => setSearchForm(e.target.value)}>
+                <input type="text" placeholder="Search by title." value={searchForm.title}/>
+                <button type="submit">Search</button>
+            </form>
             <br/>
-            <input type="text" placeholder="Filter by tag."/>
-            <button>Filter</button>
+            <form onChange={(e) => setTagForm(e.target.value)}>
+                <input type="text" placeholder="Filter by tag." value={tagForm.tag}/>
+                <button type="submit">Filter</button>
+            </form>
         </UserSearch>
     )
 }

@@ -10,14 +10,7 @@ function MyCreations({user, setViewItem}){
 
 
     useEffect(() => {
-        const configObj ={
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({id: user})
-        }
-        fetch(`http://localhost:9292/my_creations`, configObj)
+        fetch(`http://localhost:9292/my_creations/${user}`)
         .then(r => r.json())
         .then(data=> setMyCreations(data))
     }, [])
