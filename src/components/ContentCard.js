@@ -12,7 +12,7 @@ function ContentCard({creation, user, setViewItem}) {
             <br/>
             {creation.user.id === user ? (
             <>
-            <button>Edit</button>
+            <button><Link to ="/edit" onClick={() =>setViewItem(creation)}>Edit</Link></button>
             <br/>
             <br/>
             {/* <button>Delete</button> */}

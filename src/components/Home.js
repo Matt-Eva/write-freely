@@ -6,12 +6,17 @@ import {useState, useEffect} from 'react';
 function Home({creations, user, setViewItem, setUser, setUserDelete, path}){
     const [filterSearch, setFilterSearch] = useState([])
 
+    useEffect(() =>{
+        setFilterSearch([])
+    }, [path])
+
     let displayCreations;
     if(filterSearch.length === 0){
         displayCreations = creations
     } else if (filterSearch.message !== undefined) {
         alert(filterSearch.message)
-        displayCreations = creations
+        // displayCreations = creations
+        setFilterSearch([])
     } else{
         displayCreations = filterSearch
     }

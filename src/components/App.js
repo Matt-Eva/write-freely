@@ -3,6 +3,7 @@ import {Routes, Route} from "react-router-dom";
 import Home from "./Home";
 import PiecePage from "./PiecePage";
 import Create from "./Create";
+import Edit from "./Edit";
 import Login from './Login';
 import DeletePopup from './DeletePopup';
 import "../App.css"
@@ -90,6 +91,7 @@ function App() {
         }/>
         <Route exact path="/:id" element={<PiecePage user={user} viewItem={viewItem}/>}/> 
         <Route exact path="/create" element={<Create user={user}/>}/>
+        <Route path="/edit" element={<Edit user={user} viewItem={viewItem}/>}/>
         <Route path="/my_creations" element={<MyCreations user={user} setViewItem={setViewItem}/>}/>
         <Route path="/my_library" element={<MyLibrary user={user} setViewItem={setViewItem} />}/>
         <Route path="/liked" element={<Liked user={user} setViewItem={setViewItem}/>}/>

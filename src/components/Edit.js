@@ -1,8 +1,8 @@
 
 import styled from "styled-components";
-import {useState} from "react";
+import {useState, useEffect} from "react";
 
-function Create({user}) {
+function Edit({user, viewItem}){
     const [pieceForm, setPieceForm] = useState({
         title: "",
         content: "",
@@ -17,8 +17,25 @@ function Create({user}) {
     const[showTagForm, setShowTagForm] = useState(false)
     const[showPieceForm, setShowPieceForm] = useState(true)
     const [tagList, setTagList] = useState([])
-console.log(pieceForm)
     const displayTags = tagList.map(tag => <span key={tag}>{tag} </span>)
+
+    useEffect(() =>{
+        console.log(viewItem.tags)
+        setPieceForm({
+            title: viewItem.title,
+            content: viewItem.content,
+            length: viewItem.length,
+            category: viewItem.category,
+            user_id: user
+        })
+        setTagForm({
+            ...tagForm,
+            creation_id: viewItem.id
+        })
+        viewItem.tags.forEach(tag =>{
+            setTagList((tagList) => [...tagList, tag.tag])
+        })
+    }, [viewItem])
 
     let pieceFill;
     for (const key in pieceForm){
@@ -50,7 +67,7 @@ console.log(pieceForm)
         })
     }
 
-    function postCreation(e, form){
+    function patchCreation(e, form){
         e.preventDefault()
         const newCreation = {
             title: form.title,
@@ -60,34 +77,34 @@ console.log(pieceForm)
             user_id: user
         }
 
-        const configObj = {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(newCreation)
-        }
+        // const configObj = {
+        //     method: 'POST',
+        //     headers: {
+        //         "Content-Type": "application/json"
+        //     },
+        //     body: JSON.stringify(newCreation)
+        // }
 
-        fetch("http://localhost:9292/creations", configObj)
-        .then(r => r.json())
-        .then(data => {
-            setTagForm({
-            tag: tagForm.tag,
-            creation_id: data.id
-            })
-            setShowTagForm(true)
-            setPieceForm({
-                title: "",
-                content: "",
-                length: 0,
-                category: "",
-                user_id: user
-            })
-            setShowPieceForm(false)
-        })
+        // fetch("http://localhost:9292/creations", configObj)
+        // .then(r => r.json())
+        // .then(data => {
+        //     setTagForm({
+        //     tag: tagForm.tag,
+        //     creation_id: data.id
+        //     })
+        //     setShowTagForm(true)
+        //     setPieceForm({
+        //         title: "",
+        //         content: "",
+        //         length: 0,
+        //         category: "",
+        //         user_id: user
+        //     })
+        //     setShowPieceForm(false)
+        // })
     }
 
-    function postTag(e, form){
+    function postTags(e, form){
         e.preventDefault()
         let unique = true;
         tagList.forEach(tag =>{
@@ -124,9 +141,9 @@ console.log(pieceForm)
 
 
     return (
-        <CreatePage>
-        <h1>Post Your Writing!</h1>
-        <PieceForm onChange={handlePieceChange} onSubmit={(e) => postCreation(e, pieceForm)}>
+        <EditPage>
+        <h1>Edit "{viewItem.title}"</h1>
+        <PieceForm onChange={handlePieceChange} onSubmit={(e) => patchCreation(e, pieceForm)}>
             <label>Title</label>
             <input name="title" type="text" value={pieceForm.title}/>
             <br/>
@@ -146,7 +163,7 @@ console.log(pieceForm)
             {(showPieceForm && pieceFill) ? <button type="submit">Submit</button> : <button type="submit" disabled>Submit</button>}
         </PieceForm>
         <TagForm>
-            <form onSubmit ={(e) => postTag(e, tagForm)}>
+            <form onSubmit ={(e) => postTags(e, tagForm)}>
                 <label>Add Tag</label>
                 <br/>
                 <input type ="text" value={tagForm.tag} onChange={(e) => setTagForm({...tagForm, tag: e.target.value})}/>
@@ -168,13 +185,13 @@ console.log(pieceForm)
             }}>Add Tags</button> : <button disabled>Add Tags</button>}
         </TagForm>
         
-        </CreatePage>
+        </EditPage>
     )
 }
 
-export default Create;
+export default Edit;
 
-const CreatePage = styled.div`
+const EditPage = styled.div`
 text-align: center;
 
 `
