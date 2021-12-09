@@ -10,12 +10,60 @@ const [tagForm, setTagForm] = useState({
     tag: ""
 })
 
-function search(){
+console.log(tagForm)
 
+function search(form, path){
+    if(path === ""){
+        const query = form.title
+        fetch(`http://localhost:9292/search/${query}`)
+        .then(r => r.json())
+        .then(data => setFilterSearch(data))
+    } else{
+        console.log(form)
+        const query = {
+            title: form.title,
+            category: path
+        }
+        const configObj = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(query)
+        }
+        fetch("http://localhost:9292/creations/search", configObj)
+        .then(r => r.json())
+        .then(data => setFilterSearch(data))
+    }
 }
 
-function filter(){
-    
+function filter(form, path){
+    if(path === ""){
+        const query = form.tag
+        console.log(query)
+        fetch(`http://localhost:9292/tag/${query}`)
+        .then(r => r.json())
+        .then(data => {
+            console.log(data)
+            setFilterSearch(data)
+        })
+    } else {
+        console.log(path)
+        const query = {
+            tag: form.tag,
+            category: path
+        }
+        const configObj = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(query)
+        }
+        fetch("http://localhost:9292/creations/tag", configObj)
+        .then(r => r.json())
+        .then(data => setFilterSearch(data))
+    }
 }
 
     return(
@@ -26,15 +74,25 @@ function filter(){
             <NavLink exact to="/journalism">Journalism</NavLink>
             <br/>
             <br/>
-            <form onChange={(e) => setSearchForm(e.target.value)}>
-                <input type="text" placeholder="Search by title." value={searchForm.title}/>
-                <button type="submit">Search</button>
+            <form onChange={(e) => setSearchForm({title: e.target.value})} onSubmit={(e) => {
+                    e.preventDefault()
+                    search(searchForm, path)
+                    setSearchForm({title: ""})
+                    }}>
+                <input type="text" placeholder="Search by title." value={searchForm.title} />
+                {searchForm.title !== "" ? <button type="submit">Search</button> : <button disabled>Search</button>}
             </form>
             <br/>
-            <form onChange={(e) => setTagForm(e.target.value)}>
+            <form onChange={(e) => setTagForm({tag: e.target.value})} onSubmit={(e) => {
+                e.preventDefault()
+                filter(tagForm, path)
+                setTagForm({tag: ""})
+                }}>
                 <input type="text" placeholder="Filter by tag." value={tagForm.tag}/>
-                <button type="submit">Filter</button>
+                {tagForm.tag !== "" ? <button type="submit">Filter</button> : <button disabled>Filter</button>}
             </form>
+            <br/>
+            <button onClick={() => setFilterSearch("")}>Reset</button>
         </UserSearch>
     )
 }

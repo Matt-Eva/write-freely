@@ -14,14 +14,31 @@ function Create({user}) {
         tag: "",
         creation_id: null,
     })
-    console.log(pieceForm)
     const[showTagForm, setShowTagForm] = useState(false)
     const[showPieceForm, setShowPieceForm] = useState(true)
     const [tagList, setTagList] = useState([])
-
+console.log(pieceForm)
     const displayTags = tagList.map(tag => <span key={tag}>{tag} </span>)
 
-    console.log(tagForm)
+    let pieceFill;
+    for (const key in pieceForm){
+        if (pieceForm[key] === ""){
+            pieceFill = false;
+            break
+        } else{
+            pieceFill = true;
+        }
+    }
+
+    let tagFill;
+    for (const key in tagForm){
+        if (tagForm[key] === ""){
+            tagFill = false;
+            break
+        } else{
+            tagFill = true;
+        }
+    }
 
     function handlePieceChange(e){
         const name = e.target.name
@@ -72,25 +89,37 @@ function Create({user}) {
 
     function postTag(e, form){
         e.preventDefault()
-        const newTag ={
-            tag: form.tag,
-            creation_id: form.creation_id
-        }
-
-        const configObj={
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(newTag)
-        }
-
-        fetch("http://localhost:9292/newtag", configObj)
-        .then(r => r.json())
-        .then(data =>{
-            tagList.push(data.tag)
-            setTagForm({...tagForm, tag: ""})
+        let unique = true;
+        tagList.forEach(tag =>{
+            if(tag === form.tag){
+                unique = false
+            }
         })
+        if(unique){
+            const newTag ={
+                tag: form.tag,
+                creation_id: form.creation_id
+            }
+    
+            const configObj={
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(newTag)
+            }
+    
+            fetch("http://localhost:9292/newtag", configObj)
+            .then(r => r.json())
+            .then(data =>{
+                tagList.push(data.tag)
+                setTagForm({...tagForm, tag: ""})
+            })
+        }else{
+            alert("You have already added that tag.")
+            setTagForm({...tagForm, tag: ""})
+        }
+       
     }
 
 
@@ -103,6 +132,7 @@ function Create({user}) {
             <br/>
             <label>Category</label>
             <select name="category" value={pieceForm.category}>
+                <option value="">Select a Category</option>
                 <option value="fiction">Fiction</option>
                 <option value="poetry">Poetry</option>
                 <option value="nonfiction">NonFiction</option>
@@ -113,14 +143,14 @@ function Create({user}) {
             <br/>
             <input type="text" name="content" className="content" value={pieceForm.content} placeholder="Use /n to indicate line breaks and paragraphs. Character limit fifty thousand."/>
             <br/>
-            {showPieceForm ? <button type="submit">Submit</button> : <button type="submit" disabled>Submit</button>}
+            {(showPieceForm && pieceFill) ? <button type="submit">Submit</button> : <button type="submit" disabled>Submit</button>}
         </PieceForm>
         <TagForm>
             <form onSubmit ={(e) => postTag(e, tagForm)}>
                 <label>Add Tag</label>
                 <br/>
                 <input type ="text" value={tagForm.tag} onChange={(e) => setTagForm({...tagForm, tag: e.target.value})}/>
-                {showTagForm ? <button type="submit">Submit</button> : <button type="submit" disabled>Submit</button>}
+                {(showTagForm && tagFill) ? <button type="submit">Submit</button> : <button type="submit" disabled>Submit</button>}
             </form>
             <br/>
             <label>Tags</label>
