@@ -3,7 +3,7 @@ import SideBar from "./SideBar"
 import { useEffect, useState } from "react"
 import styled from "styled-components"
 
-function MyCreations({user, setViewItem}){
+function MyCreations({user, path, setViewItem}){
     const [myCreations, setMyCreations] = useState(null)
     console.log(myCreations)
     console.log(user)
@@ -24,7 +24,7 @@ function MyCreations({user, setViewItem}){
         <MyWriting>
             <h1>Your Creations</h1>
             <SideBar />
-            <Display creations={myCreations} user={user} setViewItem={setViewItem}/>
+            <Display creations={myCreations} user={user} path={path} setViewItem={setViewItem}/>
         </MyWriting>
     )
 }

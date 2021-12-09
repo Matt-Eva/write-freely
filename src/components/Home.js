@@ -26,7 +26,7 @@ function Home({creations, user, setViewItem, setUser, setUserDelete, path}){
             
             <SearchNav path={path} setFilterSearch={setFilterSearch}/>
             <SideBar user={user}/>
-            <Display creations={displayCreations} user={user} setViewItem={setViewItem}/>
+            <Display creations={displayCreations} user={user} path={path} setViewItem={setViewItem}/>
         </>
     )
 }

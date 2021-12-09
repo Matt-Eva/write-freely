@@ -1,6 +1,7 @@
 
 import styled from "styled-components";
 import {useState, useEffect} from "react";
+import { Link } from "react-router-dom"
 
 function Edit({user, viewItem}){
     const [pieceForm, setPieceForm] = useState({
@@ -69,7 +70,7 @@ function Edit({user, viewItem}){
 
     function patchCreation(e, form){
         e.preventDefault()
-        const newCreation = {
+        const updCreation = {
             title: form.title,
             content: form.content,
             length: form.content.length,
@@ -77,31 +78,28 @@ function Edit({user, viewItem}){
             user_id: user
         }
 
-        // const configObj = {
-        //     method: 'POST',
-        //     headers: {
-        //         "Content-Type": "application/json"
-        //     },
-        //     body: JSON.stringify(newCreation)
-        // }
+        const configObj = {
+            method: 'PATCH',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(updCreation)
+        }
 
-        // fetch("http://localhost:9292/creations", configObj)
-        // .then(r => r.json())
-        // .then(data => {
-        //     setTagForm({
-        //     tag: tagForm.tag,
-        //     creation_id: data.id
-        //     })
-        //     setShowTagForm(true)
-        //     setPieceForm({
-        //         title: "",
-        //         content: "",
-        //         length: 0,
-        //         category: "",
-        //         user_id: user
-        //     })
-        //     setShowPieceForm(false)
-        // })
+        fetch(`http://localhost:9292/creations/${viewItem.id}`, configObj)
+        .then(r => r.json())
+        .then(data => {
+            alert(`${data.title} has been updated.`)
+            setShowTagForm(true)
+            setPieceForm({
+                title: "",
+                content: "",
+                length: 0,
+                category: "",
+                user_id: user
+            })
+            setShowPieceForm(false)
+        })
     }
 
     function postTags(e, form){
@@ -182,7 +180,7 @@ function Edit({user, viewItem}){
                     tag: "",
                     creation_id: null,
                 })
-            }}>Add Tags</button> : <button disabled>Add Tags</button>}
+            }}><Link to={`/my_creations`}>Save Tags</Link></button> : <button disabled>Save Tags</button>}
         </TagForm>
         
         </EditPage>

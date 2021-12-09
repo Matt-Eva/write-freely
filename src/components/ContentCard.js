@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 
 import styled from "styled-components"
-function ContentCard({creation, user, setViewItem}) {
+function ContentCard({creation, user, path, setViewItem}) {
 
     return (
         <Card>
@@ -10,12 +10,12 @@ function ContentCard({creation, user, setViewItem}) {
             <Link to={`/${creation.id}`} onClick={() =>setViewItem(creation)}>View</Link>
             <br/>
             <br/>
-            {creation.user.id === user ? (
+            {path === "/my_creations" ? (
             <>
             <button><Link to ="/edit" onClick={() =>setViewItem(creation)}>Edit</Link></button>
             <br/>
             <br/>
-            {/* <button>Delete</button> */}
+            <button>Delete</button>
             </> ): null}
         </Card>
     )

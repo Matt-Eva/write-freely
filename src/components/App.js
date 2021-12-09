@@ -92,7 +92,7 @@ function App() {
         <Route exact path="/:id" element={<PiecePage user={user} viewItem={viewItem}/>}/> 
         <Route exact path="/create" element={<Create user={user}/>}/>
         <Route path="/edit" element={<Edit user={user} viewItem={viewItem}/>}/>
-        <Route path="/my_creations" element={<MyCreations user={user} setViewItem={setViewItem}/>}/>
+        <Route path="/my_creations" element={<MyCreations user={user} setViewItem={setViewItem} path="/my_creations"/>}/>
         <Route path="/my_library" element={<MyLibrary user={user} setViewItem={setViewItem} />}/>
         <Route path="/liked" element={<Liked user={user} setViewItem={setViewItem}/>}/>
       </Routes>
