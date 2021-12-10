@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 
 import styled from "styled-components"
-function ContentCard({creation, user, path, setViewItem}) {
+function ContentCard({creation, user, path, setViewItem, setCreationDelete}) {
 
     return (
         <Card>
@@ -15,7 +15,7 @@ function ContentCard({creation, user, path, setViewItem}) {
             <button><Link to ="/edit" onClick={() =>setViewItem(creation)}>Edit</Link></button>
             <br/>
             <br/>
-            <button>Delete</button>
+            <button onClick={() =>setCreationDelete({id: creation.id, title: creation.title})}>Delete</button>
             </> ): null}
         </Card>
     )

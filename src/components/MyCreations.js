@@ -3,8 +3,9 @@ import SideBar from "./SideBar"
 import { useEffect, useState } from "react"
 import styled from "styled-components"
 
-function MyCreations({user, path, setViewItem}){
+function MyCreations({user, path, setViewItem, setCreationDelete, creationDelete}){
     const [myCreations, setMyCreations] = useState(null)
+
     console.log(myCreations)
     console.log(user)
 
@@ -13,7 +14,7 @@ function MyCreations({user, path, setViewItem}){
         fetch(`http://localhost:9292/my_creations/${user}`)
         .then(r => r.json())
         .then(data=> setMyCreations(data))
-    }, [])
+    }, [creationDelete])
 
 
     if (myCreations === null){
@@ -24,7 +25,7 @@ function MyCreations({user, path, setViewItem}){
         <MyWriting>
             <h1>Your Creations</h1>
             <SideBar />
-            <Display creations={myCreations} user={user} path={path} setViewItem={setViewItem}/>
+            <Display creations={myCreations} user={user} path={path} setViewItem={setViewItem} setCreationDelete={setCreationDelete}/>
         </MyWriting>
     )
 }

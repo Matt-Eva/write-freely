@@ -1,5 +1,6 @@
 import {useState} from "react"
 import styled from "styled-components"
+import { useNavigate } from "react-router-dom"
 
 function Login({setUser}) {
     const [loginForm, setLoginForm] =useState({
@@ -11,7 +12,7 @@ function Login({setUser}) {
         password: "",
         rpassword: "",
     })
-
+    const navigate= useNavigate()
     function getUser(form){
         const user = {
             username: form.username,
@@ -25,7 +26,7 @@ function Login({setUser}) {
             body: JSON.stringify(user)
         }
 
-
+        
         fetch(`http://localhost:9292/current_users`, configObj)
         .then(r => r.json())
         .then(data =>{
@@ -33,6 +34,7 @@ function Login({setUser}) {
                 alert(data)
             } else{
                 setUser(data.id)
+                navigate("/")
             }
         })
     }
@@ -57,6 +59,7 @@ function Login({setUser}) {
                     alert(data)
                 }else{
                     setUser(data.id)
+                    navigate("/")
                 }
             })
         } else{

@@ -212,7 +212,7 @@ h3{
 
 p{
     margin: 30px 20% 30px 20%;
-    font-size: 24px;
+    font-size: 30px;
 }
 
 

@@ -3,7 +3,7 @@ import SideBar from "./SideBar"
 import { useEffect, useState } from "react"
 import styled from "styled-components"
 
-function MyLibrary({user, setViewItem}){
+function MyLibrary({user, setViewItem, setCreationDelete}){
     const [myLibrary, setMyLibrary] = useState(null)
 
     useEffect(()=>{
@@ -23,7 +23,7 @@ function MyLibrary({user, setViewItem}){
         <Library>
             <h1>My Library</h1>
             <SideBar />
-            <Display user={user} setViewItem={setViewItem} creations={myLibrary}/>
+            <Display user={user} setViewItem={setViewItem} creations={myLibrary} setCreationDelete={setCreationDelete}/>
         </Library>
     )
 }

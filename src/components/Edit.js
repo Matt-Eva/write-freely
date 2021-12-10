@@ -18,7 +18,8 @@ function Edit({user, viewItem}){
     const[showTagForm, setShowTagForm] = useState(false)
     const[showPieceForm, setShowPieceForm] = useState(true)
     const [tagList, setTagList] = useState([])
-    const displayTags = tagList.map(tag => <span key={tag}>{tag} </span>)
+    const displayTags = tagList.map(tag => <span key={tag} title="click to remove" className="tag"
+    onClick={() => deleteTaglink(tag.id)}>#{tag.tag}</span>)
 
     useEffect(() =>{
         console.log(viewItem.tags)
@@ -34,7 +35,11 @@ function Edit({user, viewItem}){
             creation_id: viewItem.id
         })
         viewItem.tags.forEach(tag =>{
-            setTagList((tagList) => [...tagList, tag.tag])
+            viewItem.taglinks.forEach(taglink =>{
+                if (taglink.tag_id === tag.id){
+                    setTagList((tagList) => [...tagList, {tag: tag.tag, id: taglink.id}])
+                }
+            })
         })
     }, [viewItem])
 
@@ -56,6 +61,14 @@ function Edit({user, viewItem}){
         } else{
             tagFill = true;
         }
+    }
+
+    function deleteTaglink(id){
+        fetch(`http://localhost:9292/taglink/${id}`, {method: 'DELETE'})
+        .then(() =>{
+            const oneLess = tagList.filter(tag => tag.id !== id)
+            setTagList([...oneLess])
+        })
     }
 
     function handlePieceChange(e){
@@ -215,5 +228,18 @@ div {
     min-height: 80px;
     border: solid;
     border-width: 1px;
+    /* padding: 10px; */
+    line-height: 20px;
+    overflow: auto;
+}
+
+span{
+    margin: 0px 5px 0px 5px;
+    padding: 0px 2px 0px 2px;
+    /* border: solid; */
+    /* border-width: 1px; */
+    border-radius: 5px;
+    background: hsl(50, 50%, 90%);
+    cursor: pointer;
 }
 `

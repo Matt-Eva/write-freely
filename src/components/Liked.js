@@ -3,7 +3,7 @@ import SideBar from "./SideBar"
 import { useEffect, useState } from "react"
 import styled from "styled-components"
 
-function Liked({user, setViewItem}){
+function Liked({user, setViewItem, setCreationDelete}){
     const[likes, setLikes] = useState(null)
 
     useEffect(()=>{
@@ -22,7 +22,7 @@ return(
     <MyLiked>
         <h1>Writing I Liked</h1>
         <SideBar />
-        <Display user={user} setViewItem={setViewItem} creations={likes}/>
+        <Display user={user} setViewItem={setViewItem} creations={likes} setCreationDelete={setCreationDelete}/>
     </MyLiked>
     
 )

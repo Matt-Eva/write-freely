@@ -3,7 +3,7 @@ import SearchNav from "./SearchNav"
 import SideBar from "./SideBar";
 import {useState, useEffect} from 'react';
 
-function Home({creations, user, setViewItem, setUser, setUserDelete, path}){
+function Home({creations, user, setViewItem, path, setCreationDelete}){
     const [filterSearch, setFilterSearch] = useState([])
 
     useEffect(() =>{
@@ -26,7 +26,7 @@ function Home({creations, user, setViewItem, setUser, setUserDelete, path}){
             
             <SearchNav path={path} setFilterSearch={setFilterSearch}/>
             <SideBar user={user}/>
-            <Display creations={displayCreations} user={user} path={path} setViewItem={setViewItem}/>
+            <Display creations={displayCreations} user={user} path={path} setViewItem={setViewItem} setCreationDelete={setCreationDelete}/>
         </>
     )
 }

@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-function DeletePopup({user, setUser, setUserDelete}){
+function UserDeletePopup({user, setUser, setUserDelete}){
 
     function removeAccount(id){
         fetch(`http://localhost:9292/users/${id}`, {method: "DELETE"})
@@ -24,7 +24,7 @@ function DeletePopup({user, setUser, setUserDelete}){
     )
 }
 
-export default DeletePopup;
+export default UserDeletePopup;
 
 const PopupDiv = styled.div`
 position: fixed;

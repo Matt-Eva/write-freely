@@ -5,12 +5,13 @@ import PiecePage from "./PiecePage";
 import Create from "./Create";
 import Edit from "./Edit";
 import Login from './Login';
-import DeletePopup from './DeletePopup';
+import UserDeletePopup from './UserDeletePopup';
 import "../App.css"
 import TopHead from './TopHead';
 import MyCreations from './MyCreations';
 import MyLibrary from './MyLibrary';
 import Liked from './Liked'
+import CreationDeletePopup from './CreationDeletePopup';
 
 function App() {
   const [allCreations, setAllCreations] = useState([])
@@ -19,6 +20,9 @@ function App() {
   const [allNonFiction, setAllNonFiction] = useState([])
   const [allJournalism, setAllJournalism] = useState([])
   const [userDelete, setUserDelete] = useState(false)
+  const [creationDelete, setCreationDelete] = useState({
+    id: 0,
+    title: ""})
   const [user, setUser] = useState(null)
   const [viewItem, setViewItem] = useState(null)
   
@@ -72,29 +76,30 @@ function App() {
   return (
     <div className="App">
       <TopHead user={user} setUser={setUser} setUserDelete={setUserDelete}/>
-      {userDelete ? <DeletePopup user={user} setUser={setUser} setUserDelete={setUserDelete}/> : null}
+      {userDelete ? <UserDeletePopup user={user} setUser={setUser} setUserDelete={setUserDelete}/> : null}
+      {creationDelete.id === 0 ? null : <CreationDeletePopup creationDelete={creationDelete} setCreationDelete={setCreationDelete}/>}
       <Routes>
         <Route exact path="/" element={
-        <Home creations={allCreations} user={user} path=""  setViewItem={setViewItem} setUser={setUser} setUserDelete={setUserDelete}/>
+        <Home creations={allCreations} user={user} path=""  setViewItem={setViewItem} setCreationDelete={setCreationDelete}/>
         }/>
         <Route path="/fiction" element={
-          <Home creations={allFiction} user={user} path="fiction"  setViewItem={setViewItem} setUser={setUser} setUserDelete={setUserDelete}/>
+          <Home creations={allFiction} user={user} path="fiction"  setViewItem={setViewItem}setCreationDelete={setCreationDelete}/>
         }/>
         <Route path="/poetry" element={
-          <Home creations={allPoetry} user={user} path="poetry"  setViewItem={setViewItem} setUser={setUser} setUserDelete={setUserDelete}/>
+          <Home creations={allPoetry} user={user} path="poetry"  setViewItem={setViewItem}setCreationDelete={setCreationDelete}/>
         }/>
         <Route path="/nonfiction" element={
-          <Home creations={allNonFiction} user={user} path="nonfiction"  setViewItem={setViewItem} setUser={setUser} setUserDelete={setUserDelete}/>
+          <Home creations={allNonFiction} user={user} path="nonfiction"  setViewItem={setViewItem}setCreationDelete={setCreationDelete}/>
         }/>
         <Route path="/journalism" element={
-          <Home creations={allJournalism} user={user} path="journalism" setViewItem={setViewItem} setUser={setUser} setUserDelete={setUserDelete}/>
+          <Home creations={allJournalism} user={user} path="journalism" setViewItem={setViewItem}setCreationDelete={setCreationDelete}/>
         }/>
         <Route exact path="/:id" element={<PiecePage user={user} viewItem={viewItem}/>}/> 
         <Route exact path="/create" element={<Create user={user}/>}/>
         <Route path="/edit" element={<Edit user={user} viewItem={viewItem}/>}/>
-        <Route path="/my_creations" element={<MyCreations user={user} setViewItem={setViewItem} path="/my_creations"/>}/>
-        <Route path="/my_library" element={<MyLibrary user={user} setViewItem={setViewItem} />}/>
-        <Route path="/liked" element={<Liked user={user} setViewItem={setViewItem}/>}/>
+        <Route path="/my_creations" element={<MyCreations user={user} setViewItem={setViewItem} setCreationDelete={setCreationDelete} creationDelete={creationDelete} path="/my_creations"/>}/>
+        <Route path="/my_library" element={<MyLibrary user={user} setViewItem={setViewItem} setCreationDelete={setCreationDelete}/>}/>
+        <Route path="/liked" element={<Liked user={user} setViewItem={setViewItem}setCreationDelete={setCreationDelete}/>}/>
       </Routes>
     </div>
   );

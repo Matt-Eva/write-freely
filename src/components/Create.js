@@ -18,7 +18,7 @@ function Create({user}) {
     const[showPieceForm, setShowPieceForm] = useState(true)
     const [tagList, setTagList] = useState([])
 console.log(pieceForm)
-    const displayTags = tagList.map(tag => <span key={tag}>{tag} </span>)
+    const displayTags = tagList.map(tag => <span key={tag} className="tag">#{tag}</span>)
 
     let pieceFill;
     for (const key in pieceForm){
@@ -186,6 +186,7 @@ text-align: center;
     width: 50%;
     height: 50vh;
     flex-wrap: wrap;
+    overflow:
 }
 `
 
@@ -200,5 +201,15 @@ div {
     min-height: 80px;
     border: solid;
     border-width: 1px;
+}
+
+span{
+    margin: 0px 5px 0px 5px;
+    padding: 0px 2px 0px 2px;
+    /* border: solid; */
+    /* border-width: 1px; */
+    border-radius: 5px;
+    background: hsl(50, 50%, 90%);
+    cursor: pointer;
 }
 `
