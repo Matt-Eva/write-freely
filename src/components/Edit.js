@@ -169,7 +169,8 @@ function Edit({user, viewItem}){
             <br/>
             <label>Text</label>
             <br/>
-            <input type="text" name="content" className="content" value={pieceForm.content} placeholder="Use /n to indicate line breaks and paragraphs. Character limit fifty thousand."/>
+            <textarea name="content" className="content" value={pieceForm.content} placeholder={`Use /n to indicate line breaks and paragraphs. \nUse H: to indicate headers. \nExample: H:This is how to write a header./n \nCharacter limit sixty thousand.`}/>
+            {/* <input type="text" name="content" className="content" value={pieceForm.content} placeholder="Use /n to indicate line breaks and paragraphs. Character limit fifty thousand."/> */}
             <br/>
             {(showPieceForm && pieceFill) ? <button type="submit">Submit</button> : <button type="submit" disabled>Submit</button>}
         </PieceForm>
@@ -211,7 +212,7 @@ const PieceForm = styled.form`
 margin-top: 30px;
 text-align: center;
 .content{
-    width: 50%;
+    width: 80%;
     height: 50vh;
     flex-wrap: wrap;
 }

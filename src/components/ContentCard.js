@@ -2,12 +2,15 @@ import { Link } from "react-router-dom"
 
 import styled from "styled-components"
 function ContentCard({creation, user, path, setViewItem, setCreationDelete}) {
-
+    const readTime = Math.ceil(creation.length / 1000);
+    console.log(readTime)
     return (
         <Card>
             <h2>{creation.title}</h2>
             <h4>By: {creation.user.username}</h4>
-            <Link to={`/${creation.id}`} onClick={() =>setViewItem(creation)}>View</Link>
+            <p>A {readTime} minute read.</p>
+            <br/>
+            <Link to={`/${creation.id}`} onClick={() =>setViewItem(creation)}>Read ></Link>
             <br/>
             <br/>
             {path === "/my_creations" ? (
@@ -36,9 +39,10 @@ const Card = styled.div`
   transition: background-color 500ms, border-color 500ms;
   box-shadow: 3px 3px 4px hsl(0, 0%, 85%);
   text-align: center;
+  max-height: 200px;
 
   a{
-      text-decoration: none;
+      /* text-decoration: none; */
       color: black;
   }
   a:visited{

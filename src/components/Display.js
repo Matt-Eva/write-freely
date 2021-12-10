@@ -22,6 +22,7 @@ const BrowseWriting = styled.div`
   border-radius: 5px;   
   border: double;
   border-width: 4px;
+  min-height:66vh;
 
   div:hover {
     background-color: hsl(210, 50%, 95%);

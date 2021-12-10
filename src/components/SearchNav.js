@@ -102,10 +102,13 @@ function filter(form, path){
 export default SearchNav;
 
 const UserSearch = styled.div `
-margin: 0px 20% 10px 20%;
-padding-top: 30px;
+margin: 0px 0% 10px 0%;
+padding: 30px 20% 10px 20%;
 background: hsl(0, 0%, 90%);
 text-align: center;
+position: sticky;
+top: 0px;
+height: 150px;
 
 a{
     margin: 2px;

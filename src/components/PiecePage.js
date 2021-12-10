@@ -17,9 +17,16 @@ function PiecePage({user, viewItem}) {
     const content_array = viewItem.content.split("/n")
     let count = 0;
     const display_array = content_array.map(p => {
+        console.log(p)
         count +=1
-        return <p key={count}>{p}</p>
+        if(p.includes("H:")){
+            const header = p.replace("H:", "")
+            return <h2 key={count}>{header}</h2>
+        } else{
+            return <p key={count}>{p}</p>
+        }
     })
+    const readTime = Math.ceil(viewItem.length / 1000);
 
     useEffect(() => {
         fetch(`http://localhost:9292/users/${user}`)
@@ -194,6 +201,7 @@ function PiecePage({user, viewItem}) {
         <Reader>
             <h1>{viewItem.title}</h1>
             <h3>By: {viewItem.user.username}</h3>
+            <h4>A {readTime} minute read.</h4>
             <div>{display_array}</div>
         </Reader>
         </>
@@ -205,13 +213,22 @@ export default PiecePage
 const Reader = styled.div`
 h1{
     text-align: center;
+    font-size: 40px;
+}
+h2{
+    font-size: 35px;
 }
 h3{
     text-align: center;
 }
+h4{
+    text-align: center;
+}
+
+margin: 0px 20% 0px 20%;
 
 p{
-    margin: 30px 20% 30px 20%;
+    margin: 30px 0% 30px 0%;
     font-size: 30px;
 }
 
