@@ -35,7 +35,7 @@ const Card = styled.div`
   border-width: 1px; */
   border-radius: 5px;
   border-color: black;
-  background-color: hsl(0, 0%, 98%);
+  background-color: hsl(0, 0%, 95%);
   transition: background-color 500ms, border-color 500ms;
   box-shadow: 3px 3px 4px hsl(0, 0%, 85%);
   text-align: center;

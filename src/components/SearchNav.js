@@ -103,12 +103,17 @@ export default SearchNav;
 
 const UserSearch = styled.div `
 margin: 0px 0% 10px 0%;
-padding: 30px 20% 10px 20%;
-background: hsl(0, 0%, 90%);
+padding: 30px 20% 20px 20%;
+background: hsl(60, 50%, 90%);
+border-bottom: solid;
+border-width: 1px;
 text-align: center;
 position: sticky;
-top: 0px;
-height: 170px;
+top: 50px;
+height: 150px;
+/* display: flex; */
+
+
 
 .notLast{
     padding-right: 18px;
@@ -120,6 +125,6 @@ a{
     margin: 2px 10px 2px 10px;
     color: black;
     text-decoration: none;
-    font-size: 40px;
+    font-size: 30px;
 }
 `

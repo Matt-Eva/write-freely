@@ -18,14 +18,14 @@ const BrowseWriting = styled.div`
   display: flex;
   flex-wrap: wrap;
   /* width: 800px; */
-  background-color: hsl(0, 0%, 95%);
+  background-color: hsl(50, 50%, 70%);
   border-radius: 5px;   
-  border: double;
-  border-width: 4px;
-  min-height:66vh;
+  border: solid;
+  border-width: 1px;
+  min-height:64vh;
 
   div:hover {
-    background-color: hsl(210, 50%, 95%);
+    background-color: hsl(60, 50%, 90%);
   border-color: hsl(180, 50%, 20%);
   }
 `
