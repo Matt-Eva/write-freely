@@ -15,7 +15,7 @@ function ContentCard({creation, user, path, setViewItem, setCreationDelete}) {
             <br/>
             {path === "/my_creations" ? (
             <>
-            <button><Link to ="/edit" onClick={() =>setViewItem(creation)}>Edit</Link></button>
+            <Link to ="/edit" onClick={() =>setViewItem(creation)}>Edit ></Link>
             <br/>
             <br/>
             <button onClick={() =>setCreationDelete({id: creation.id, title: creation.title})}>Delete</button>

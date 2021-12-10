@@ -152,6 +152,7 @@ function Create({user}) {
             <textarea name="content" className="content" value={pieceForm.content} placeholder={`Use /n to indicate line breaks and paragraphs. \nUse H: to indicate headers. \nExample: H:This is how to write a header./n \nCharacter limit sixty thousand.`}/>
             {/* <input type="text" name="content" className="content" value={pieceForm.content} placeholder="Use /n to indicate line breaks and paragraphs. Use H: to indicate headers. Character limit fifty thousand."/> */}
             <br/>
+            <p>{pieceForm.content.length} characters.</p>
             {(showPieceForm && pieceFill) ? <button type="submit">Submit</button> : <button type="submit" disabled>Submit</button>}
         </PieceForm>
         <TagForm>
@@ -194,8 +195,9 @@ text-align: center;
 .content{
     width: 80%;
     height: 50vh;
-    flex-wrap: wrap;
-    overflow:
+    font-size: 20px;
+    font-family: Mulish;
+    line-height: 2;
 }
 `
 
