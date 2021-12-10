@@ -39,7 +39,6 @@ const Card = styled.div`
   transition: background-color 500ms, border-color 500ms;
   box-shadow: 3px 3px 4px hsl(0, 0%, 85%);
   text-align: center;
-  max-height: 200px;
 
   a{
       /* text-decoration: none; */

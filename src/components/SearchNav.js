@@ -70,9 +70,9 @@ function filter(form, path){
 
     return(
         <UserSearch>
-            <NavLink exact to="/fiction">Fiction</NavLink>
-            <NavLink exact to="/poetry">Poetry</NavLink>
-            <NavLink exact to="/nonfiction">NonFiction</NavLink>
+            <NavLink exact to="/fiction" className="notLast">Fiction</NavLink>
+            <NavLink exact to="/poetry" className="notLast">Poetry</NavLink>
+            <NavLink exact to="/nonfiction" className="notLast">NonFiction</NavLink>
             <NavLink exact to="/journalism">Journalism</NavLink>
             <br/>
             <br/>
@@ -108,11 +108,18 @@ background: hsl(0, 0%, 90%);
 text-align: center;
 position: sticky;
 top: 0px;
-height: 150px;
+height: 170px;
+
+.notLast{
+    padding-right: 18px;
+    border-right: solid;
+    border-width: 1px;
+}
 
 a{
-    margin: 2px;
+    margin: 2px 10px 2px 10px;
     color: black;
     text-decoration: none;
+    font-size: 40px;
 }
 `

@@ -17,7 +17,7 @@ export default SideBar;
 
 const SideDiv = styled.div`
     position: sticky;
-    top: 200px;;
+    top: 220px;;
     margin: 0px 20px 0px 10px;
     float: left;
     width: 200px;

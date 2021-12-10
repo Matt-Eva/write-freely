@@ -229,7 +229,8 @@ margin: 0px 20% 0px 20%;
 
 p{
     margin: 30px 0% 30px 0%;
-    font-size: 30px;
+    font-size: 25px;
+    line-height: 1.5;
 }
 
 
