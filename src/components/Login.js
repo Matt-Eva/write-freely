@@ -12,7 +12,8 @@ function Login({setUser}) {
         password: "",
         rpassword: "",
     })
-    const navigate= useNavigate()
+    const navigate = useNavigate()
+
     function getUser(form){
         const user = {
             username: form.username,
@@ -33,8 +34,8 @@ function Login({setUser}) {
             if (typeof data === "string" ){
                 alert(data)
             } else{
-                setUser(data.id)
                 navigate("/")
+                setUser(data.id)
             }
         })
     }
@@ -58,8 +59,8 @@ function Login({setUser}) {
                 if (typeof data === "string"){
                     alert(data)
                 }else{
-                    setUser(data.id)
                     navigate("/")
+                    setUser(data.id)
                 }
             })
         } else{

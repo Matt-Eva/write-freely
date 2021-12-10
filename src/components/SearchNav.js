@@ -62,7 +62,9 @@ function filter(form, path){
         }
         fetch("http://localhost:9292/creations/tag", configObj)
         .then(r => r.json())
-        .then(data => setFilterSearch(data))
+        .then(data => {
+            console.log(data)
+            setFilterSearch(data)})
     }
 }
 

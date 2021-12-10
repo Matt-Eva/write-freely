@@ -17,8 +17,7 @@ function Create({user}) {
     const[showTagForm, setShowTagForm] = useState(false)
     const[showPieceForm, setShowPieceForm] = useState(true)
     const [tagList, setTagList] = useState([])
-console.log(pieceForm)
-    const displayTags = tagList.map(tag => <span key={tag} className="tag">#{tag}</span>)
+    const displayTags = tagList.map(tag => <span key={tag} title="click to remove" className="tag" onClick={() => deleteTaglink(tag.id)}>#{tag.tag}</span>)
 
     let pieceFill;
     for (const key in pieceForm){
@@ -38,6 +37,14 @@ console.log(pieceForm)
         } else{
             tagFill = true;
         }
+    }
+
+    function deleteTaglink(id){
+        fetch(`http://localhost:9292/taglink/${id}`, {method: 'DELETE'})
+        .then(() =>{
+            const oneLess = tagList.filter(tag => tag.id !== id)
+            setTagList([...oneLess])
+        })
     }
 
     function handlePieceChange(e){
@@ -112,7 +119,8 @@ console.log(pieceForm)
             fetch("http://localhost:9292/newtag", configObj)
             .then(r => r.json())
             .then(data =>{
-                tagList.push(data.tag)
+                console.log(data)
+                setTagList([...tagList, {tag: data.tag.tag, id: data.id}])
                 setTagForm({...tagForm, tag: ""})
             })
         }else{
