@@ -16,6 +16,20 @@ Then, navigate into the backend directory and run `rake db:migrate` to set up th
 
 Once the backend is set up, you can clone down this repository into your target directory. Then, navigate into this frontend directory and run `npm install`. Once your installation is finished and your backend server is launched, you can run `npm start` from within the frontend directory to launch the application in the browser.
 
+## Walkthrough
+
+- Video Demo:
+- Snapshots:
+
+Login Screen:
+<img width="1344" alt="Screen Shot 2022-02-03 at 3 41 07 PM" src="https://user-images.githubusercontent.com/89106805/152447680-2857779d-ca9e-4b9d-b83d-680d2a149449.png">
+
+Homepage: 
+<img width="1344" alt="Screen Shot 2022-02-03 at 3 42 17 PM" src="https://user-images.githubusercontent.com/89106805/152447752-0916c731-a7c8-4a17-9def-e2e491355449.png">
+
+View Writing Page:
+<img width="1344" alt="Screen Shot 2022-02-03 at 3 43 06 PM" src="https://user-images.githubusercontent.com/89106805/152447819-2cf1c06c-c396-4f59-aa23-9fb6689ef66c.png">
+
 ## Created By
 
 Matt Eva:
