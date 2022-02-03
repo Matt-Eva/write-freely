@@ -33,6 +33,10 @@ View Writing Page:
 
 <img width="1344" alt="Screen Shot 2022-02-03 at 3 43 06 PM" src="https://user-images.githubusercontent.com/89106805/152447819-2cf1c06c-c396-4f59-aa23-9fb6689ef66c.png">
 
+User Library View: 
+
+<img width="1344" alt="Screen Shot 2022-02-03 at 3 44 52 PM" src="https://user-images.githubusercontent.com/89106805/152447992-6a8d215e-ad33-432c-b4a5-41c705fd3f83.png">
+
 ## Created By
 
 Matt Eva:
